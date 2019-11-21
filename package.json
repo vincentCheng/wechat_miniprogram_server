@@ -4,6 +4,7 @@
   "description": "这是一个微信小程序的后台",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
