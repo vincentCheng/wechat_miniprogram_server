@@ -21,7 +21,15 @@ app.use(cookieParser())
 const indexRouter = require('./routers')
 app.use('/', indexRouter)  //
 
-app.listen('5010', () => {
-	console.log('服务器启动成功, 请访问: http://localhost:5010')
-})
-
+// 通过mongoose连接数据库
+mongoose.connect('mongodb://localhost/wechat_miniprogram_server_db', { useNewUrlParser: true })
+	.then(() => {
+		console.log('连接数据库成功!!!')
+		// 只有当连接上数据库后才去启动服务器
+		app.listen('5010', () => {
+			console.log('服务器启动成功, 请访问: http://localhost:5010')
+		})
+	})
+	.catch(error => {
+		console.error('连接数据库失败', error)
+	})
